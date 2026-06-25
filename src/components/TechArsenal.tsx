@@ -69,7 +69,7 @@ const categories = [
 function DockSkillNode({ skill, category, mx, my, x, y, delay }: any) {
   const ref = React.useRef<HTMLDivElement>(null);
 
-  const dist = useTransform([mx, my], ([valX, valY]) => {
+  const dist = useTransform([mx, my], ([valX, valY]: any) => {
     if (valX === Infinity || valY === Infinity) return 150;
     const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, y: 0, width: 0, height: 0 };
     const nodeX = bounds.x + bounds.width / 2;
@@ -135,7 +135,7 @@ function DockSkillNode({ skill, category, mx, my, x, y, delay }: any) {
 function DockCenterNode({ category, mx, my, index }: any) {
   const ref = React.useRef<HTMLDivElement>(null);
 
-  const dist = useTransform([mx, my], ([valX, valY]) => {
+  const dist = useTransform([mx, my], ([valX, valY]: any) => {
     if (valX === Infinity || valY === Infinity) return 150;
     const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, y: 0, width: 0, height: 0 };
     const nodeX = bounds.x + bounds.width / 2;
