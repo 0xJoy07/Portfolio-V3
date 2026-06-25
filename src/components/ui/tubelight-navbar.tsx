@@ -102,6 +102,16 @@ export function NavBar({ items, className }: NavBarProps) {
           paddingTop: isScrolled ? 6 : 12,
           paddingBottom: isScrolled ? 6 : 12,
         }}
+        whileHover={
+          isScrolled ? {
+            paddingTop: 12,
+            paddingBottom: 12,
+            paddingLeft: 16,
+            paddingRight: 16,
+            scale: 1.02,
+            transition: { duration: 0.2, ease: "easeOut" }
+          } : {}
+        }
         transition={{ duration: 0.5, ease: EASE }}
       >
         {/* ── Left: "JS." logo ── */}
@@ -115,7 +125,7 @@ export function NavBar({ items, className }: NavBarProps) {
           transition={{ duration: 0.4, ease: EASE }}
         >
           <span className="text-xl font-bold text-foreground font-sans">
-            JS.
+            0xJoy07
           </span>
         </motion.div>
 

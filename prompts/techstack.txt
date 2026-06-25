@@ -1,0 +1,9 @@
+Now Build the Technical Arsenal Section as Tech in navbar
+
+Fetch skills and data from my linkedin and add to technical arsenal.
+
+Styling I want a 3d interactive keyboard like structure. All skills, AI tools and all will be there.
+
+Add animations to it.
+
+Add scroll effects too.
