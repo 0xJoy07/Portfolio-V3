@@ -5,12 +5,12 @@ import { NavBar } from "@/components/ui/tubelight-navbar"
 
 export function Navbar() {
   const navItems = [
-    { name: 'Home', url: '#home', icon: Home },
-    { name: 'About', url: '#about', icon: User },
-    { name: 'Insights', url: '#insights', icon: BookOpen },
-    { name: 'Projects', url: '#projects', icon: Briefcase },
-    { name: 'Experience', url: '#experience', icon: Clock },
-    { name: 'Contact', url: '#contact', icon: Phone }
+    { name: 'HOME', url: '#home', icon: Home },
+    { name: 'ABOUT', url: '#about', icon: User },
+    { name: 'TECH', url: '#insights', icon: BookOpen },
+    { name: 'PROJECTS', url: '#projects', icon: Briefcase },
+    { name: 'EXPERIENCE', url: '#experience', icon: Clock },
+    { name: 'CONTACT', url: '#contact', icon: Phone }
   ]
 
   return <NavBar items={navItems} />

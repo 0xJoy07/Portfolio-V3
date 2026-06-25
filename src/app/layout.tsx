@@ -1,23 +1,6 @@
 import type { Metadata } from "next";
-import { Changa, Outfit, Cedarville_Cursive } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-
-const changa = Changa({
-  variable: "--font-changa",
-  subsets: ["latin"],
-});
-
-const outfit = Outfit({
-  variable: "--font-outfit",
-  subsets: ["latin"],
-});
-
-const cedarville = Cedarville_Cursive({
-  variable: "--font-cursive",
-  subsets: ["latin"],
-  weight: "400",
-});
 
 export const metadata: Metadata = {
   title: "Joy Sengupta | Portfolio",
@@ -33,9 +16,14 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${changa.variable} ${outfit.variable} ${cedarville.variable} h-full antialiased font-sans scroll-smooth`}
+      className="h-full antialiased scroll-smooth"
     >
-      <body className="min-h-full flex flex-col">
+      <head>
+        <style>
+          {`@import url('https://fonts.googleapis.com/css2?family=Changa:wght@200..800&display=swap');`}
+        </style>
+      </head>
+      <body className="min-h-full flex flex-col font-sans">
         <ThemeProvider
           attribute="class"
           defaultTheme="light"

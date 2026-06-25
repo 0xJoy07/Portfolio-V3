@@ -7,7 +7,7 @@ import { TimelineContent } from "./ui/timeline-animation";
 
 export function About() {
   const heroRef = useRef<HTMLDivElement>(null);
-  
+
   const revealVariants = {
     visible: (i: number) => ({
       y: 0,
@@ -24,7 +24,7 @@ export function About() {
       opacity: 0,
     },
   };
-  
+
   const textVariants = {
     visible: (i: number) => ({
       filter: "blur(0px)",
@@ -43,14 +43,14 @@ export function About() {
   return (
     <section id="about" className="py-24 md:py-32 px-4 min-h-[80vh] flex flex-col justify-center border-t border-border">
       <div className="max-w-5xl mx-auto w-full" ref={heroRef}>
-        
+
         <div className="bg-muted/10 border border-border rounded-[2rem] p-8 md:p-14 shadow-sm flex flex-col">
           <TimelineContent
             as="h2"
             animationNum={0}
             timelineRef={heroRef}
             customVariants={revealVariants}
-            className="text-xl md:text-2xl lg:text-3xl !leading-[160%] font-semibold text-foreground mb-12 font-[family-name:var(--font-playfair)]"
+            className="text-xl md:text-2xl lg:text-3xl !leading-[200%] font-semibold text-foreground mb-12 font-sans"
           >
             I am a{" "}
             <TimelineContent
@@ -101,7 +101,7 @@ export function About() {
               animationNum={5}
               timelineRef={heroRef}
               customVariants={textVariants}
-              className="font-[family-name:var(--font-outfit)]"
+              className="font-sans"
             >
               <div className="font-medium text-foreground mb-1 capitalize text-lg">
                 Data Analysis • Flask • Java
@@ -119,10 +119,12 @@ export function About() {
               animationNum={6}
               timelineRef={heroRef}
               customVariants={textVariants}
-              className="bg-primary gap-2 font-medium shadow-xl shadow-primary/20 text-primary-foreground h-14 px-8 rounded-full text-sm inline-flex items-center justify-center cursor-pointer hover:scale-105 transition-transform"
+              className="btn-sweep-fill inline-flex items-center justify-center h-14 px-8 border border-foreground bg-transparent text-foreground rounded-full text-sm font-sans tracking-widest hover:text-background transition-colors duration-300 cursor-pointer shadow-xl shadow-foreground/10"
             >
-              <Zap fill="currentColor" size={18} />
-              Connect on LinkedIn
+              <span className="relative z-10 flex items-center gap-2">
+                <Zap fill="currentColor" size={18} />
+                Connect on LinkedIn
+              </span>
             </TimelineContent>
           </div>
         </div>

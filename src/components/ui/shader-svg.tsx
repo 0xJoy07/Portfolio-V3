@@ -1,46 +1,54 @@
 "use client"
 
 import { MeshGradient } from "@paper-design/shaders-react"
-import { motion } from "framer-motion"
-import { useState, useEffect } from "react"
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
+import { useEffect } from "react"
 
 export function MeshGradientSVG() {
   const colors = [
-    "#FFB3D9", // Pastel pink
-    "#87CEEB", // Sky blue
-    "#4A90E2", // Medium blue
-    "#2C3E50", // Dark blue-gray
-    "#1A1A2E", // Very dark blue
+    "#F8F9FA", // Off-white
+    "#E5E7EB", // Light gray
+    "#9CA3AF", // Medium gray
+    "#4B5563", // Dark gray
+    "#111827", // Rich dark gray/black
   ]
 
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-  const [eyeOffset, setEyeOffset] = useState({ x: 0, y: 0 })
+  const mouseX = useMotionValue(0)
+  const mouseY = useMotionValue(0)
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY })
+      mouseX.set(e.clientX)
+      mouseY.set(e.clientY)
     }
 
     window.addEventListener("mousemove", handleMouseMove)
     return () => window.removeEventListener("mousemove", handleMouseMove)
-  }, [])
+  }, [mouseX, mouseY])
 
-  useEffect(() => {
+  const eyeOffsetX = useSpring(useTransform(mouseX, (x: number) => {
+    if (typeof document === "undefined") return 0
     const rect = document.querySelector("svg")?.getBoundingClientRect()
-    if (rect) {
-      const centerX = rect.left + rect.width / 2
-      const centerY = rect.top + rect.height / 2
+    if (!rect) return 0
+    const centerX = rect.left + rect.width / 2
+    const deltaX = (x - centerX) * 0.08
+    return Math.max(-8, Math.min(8, deltaX))
+  }), { stiffness: 150, damping: 15 })
 
-      const deltaX = (mousePosition.x - centerX) * 0.08
-      const deltaY = (mousePosition.y - centerY) * 0.08
+  const eyeOffsetY = useSpring(useTransform(mouseY, (y: number) => {
+    if (typeof document === "undefined") return 0
+    const rect = document.querySelector("svg")?.getBoundingClientRect()
+    if (!rect) return 0
+    const centerY = rect.top + rect.height / 2
+    const deltaY = (y - centerY) * 0.08
+    return Math.max(-8, Math.min(8, deltaY))
+  }), { stiffness: 150, damping: 15 })
 
-      const maxOffset = 8
-      setEyeOffset({
-        x: Math.max(-maxOffset, Math.min(maxOffset, deltaX)),
-        y: Math.max(-maxOffset, Math.min(maxOffset, deltaY)),
-      })
-    }
-  }, [mousePosition])
+  const eye1Cx = useTransform(eyeOffsetX, x => 80 + x)
+  const eye1Cy = useTransform(eyeOffsetY, y => 120 + y)
+  
+  const eye2Cx = useTransform(eyeOffsetX, x => 150 + x)
+  const eye2Cy = useTransform(eyeOffsetY, y => 120 + y)
 
   return (
     <motion.div
@@ -70,30 +78,24 @@ export function MeshGradientSVG() {
         </foreignObject>
 
         <motion.ellipse
-          cx={80}
-          cy={120}
           rx="20"
           ry="30"
           fill="currentColor"
           className="animate-blink"
-          animate={{
-            cx: 80 + eyeOffset.x,
-            cy: 120 + eyeOffset.y,
+          style={{
+            cx: eye1Cx,
+            cy: eye1Cy,
           }}
-          transition={{ type: "spring", stiffness: 150, damping: 15 }}
         />
         <motion.ellipse
-          cx={150}
-          cy={120}
           rx="20"
           ry="30"
           fill="currentColor"
           className="animate-blink"
-          animate={{
-            cx: 150 + eyeOffset.x,
-            cy: 120 + eyeOffset.y,
+          style={{
+            cx: eye2Cx,
+            cy: eye2Cy,
           }}
-          transition={{ type: "spring", stiffness: 150, damping: 15 }}
         />
       </svg>
 
