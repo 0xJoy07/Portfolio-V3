@@ -1,31 +1,17 @@
-import Link from "next/link";
+"use client";
 
-import { Button } from "./ui/button";
+import { Home, User, Briefcase, BookOpen, Clock, Phone } from 'lucide-react'
+import { NavBar } from "@/components/ui/tubelight-navbar"
 
 export function Navbar() {
-  return (
-    <nav className="fixed top-6 left-1/2 -translate-x-1/2 w-[90%] max-w-5xl z-50">
-      <div className="flex items-center justify-between px-6 py-4 bg-background/80 backdrop-blur-md border border-border shadow-sm rounded-full">
-        {/* Logo / Brand */}
-        <Link href="/" className="text-xl font-bold tracking-tight">
-          JS<span className="text-primary">.</span>
-        </Link>
+  const navItems = [
+    { name: 'Home', url: '#home', icon: Home },
+    { name: 'About', url: '#about', icon: User },
+    { name: 'Insights', url: '#insights', icon: BookOpen },
+    { name: 'Projects', url: '#projects', icon: Briefcase },
+    { name: 'Experience', url: '#experience', icon: Clock },
+    { name: 'Contact', url: '#contact', icon: Phone }
+  ]
 
-        {/* Navigation Links */}
-        <div className="hidden md:flex items-center gap-8 text-sm font-medium">
-          <Link href="#about" className="text-muted-foreground hover:text-foreground transition-colors">About</Link>
-          <Link href="#projects" className="text-muted-foreground hover:text-foreground transition-colors">Projects</Link>
-          <Link href="#experience" className="text-muted-foreground hover:text-foreground transition-colors">Experience</Link>
-          <Link href="#contact" className="text-muted-foreground hover:text-foreground transition-colors">Contact</Link>
-        </div>
-
-        {/* CTA */}
-        <div className="flex items-center gap-4">
-          <Button variant="default" className="rounded-full px-6">
-            Let's Talk
-          </Button>
-        </div>
-      </div>
-    </nav>
-  );
+  return <NavBar items={navItems} />
 }

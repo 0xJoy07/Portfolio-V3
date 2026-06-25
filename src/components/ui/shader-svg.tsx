@@ -70,6 +70,8 @@ export function MeshGradientSVG() {
         </foreignObject>
 
         <motion.ellipse
+          cx={80}
+          cy={120}
           rx="20"
           ry="30"
           fill="currentColor"
@@ -81,6 +83,8 @@ export function MeshGradientSVG() {
           transition={{ type: "spring", stiffness: 150, damping: 15 }}
         />
         <motion.ellipse
+          cx={150}
+          cy={120}
           rx="20"
           ry="30"
           fill="currentColor"

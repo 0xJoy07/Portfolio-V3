@@ -81,6 +81,9 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --dot-color: rgba(0, 0, 0, 0.35);
+  --hero-glow: radial-gradient(circle at center, #FFF991 0%, transparent 70%);
+  --hero-glow-opacity: 0.6;
 }
 
 .dark {
@@ -115,6 +118,9 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+  --dot-color: rgba(255, 255, 255, 0.15);
+  --hero-glow: radial-gradient(circle at center, rgba(110, 60, 200, 0.35) 0%, transparent 70%);
+  --hero-glow-opacity: 0.5;
 }
 
 @layer base {
@@ -127,4 +133,29 @@
   html {
     @apply font-sans;
   }
+}
+
+/* Smooth theme transition */
+html,
+html *,
+html *::before,
+html *::after {
+  transition: background-color 500ms ease,
+              color 500ms ease,
+              border-color 500ms ease,
+              box-shadow 500ms ease,
+              fill 500ms ease,
+              stroke 500ms ease,
+              opacity 400ms ease;
+}
+
+/* Hero glow effect (theme-aware) */
+.hero-glow {
+  background-image: var(--hero-glow);
+  opacity: var(--hero-glow-opacity);
+  mix-blend-mode: multiply;
+}
+
+.dark .hero-glow {
+  mix-blend-mode: screen;
 }
