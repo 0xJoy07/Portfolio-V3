@@ -9,6 +9,7 @@ type TimelineContentProps = {
   customVariants: any;
   children: ReactNode;
   className?: string;
+  [key: string]: any; // Allow arbitrary props like href, target, rel
 };
 
 export function TimelineContent({
@@ -17,6 +18,8 @@ export function TimelineContent({
   customVariants,
   children,
   className,
+  timelineRef, // extracted but unused directly by framer-motion here
+  ...props
 }: TimelineContentProps) {
   const MotionComponent = motion.create(as as any) as any;
   return (
@@ -27,6 +30,7 @@ export function TimelineContent({
       viewport={{ once: true, margin: "-50px" }}
       variants={customVariants}
       className={className}
+      {...props}
     >
       {children}
     </MotionComponent>
