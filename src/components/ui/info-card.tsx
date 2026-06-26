@@ -88,7 +88,7 @@ function DockButton({ icon, href }: { icon: React.ReactNode, href?: string }) {
   const animationProps = {
     initial: { scale: 1, margin: "0px 0px" },
     whileHover: { scale: 1.5, margin: "0px 8px" },
-    transition: { type: "spring", stiffness: 300, damping: 15 }
+    transition: { type: "spring" as const, stiffness: 300, damping: 15 }
   };
 
   if (href) {
