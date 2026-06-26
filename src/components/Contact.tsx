@@ -39,6 +39,8 @@ function ContactFormSection({
     }
 
     data.append("access_key", key);
+    data.append("subject", "New message from Portfolio Contact Form");
+    data.append("from_name", "Portfolio Notification");
 
     try {
       const endpoint = "https://api.web3forms.com/submit";
