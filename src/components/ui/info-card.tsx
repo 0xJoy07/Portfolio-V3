@@ -181,8 +181,8 @@ function ProfileCard({ name, role, status, avatar, tags = [], isVerified, social
         {/* Action Buttons with macOS Dock animation */}
         <div 
           className="mt-4 flex justify-center gap-2 h-[64px] items-center"
-          onMouseMove={(e) => mouseX.set(e.clientX)}
-          onMouseLeave={() => mouseX.set(Infinity)}
+          onPointerMove={(e) => mouseX.set(e.clientX)}
+          onPointerLeave={() => mouseX.set(Infinity)}
         >
           {socials.map((social, idx) => {
             let Icon: React.ComponentType<{ className?: string }> = UserPlus;
