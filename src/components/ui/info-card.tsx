@@ -97,27 +97,25 @@ function DockButton({ mouseX, icon, href }: { mouseX: any, icon: React.ReactNode
 
   if (href) {
     return (
-      <motion.a
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        ref={ref}
-        style={{ width, height: width }}
-        className={className}
-      >
-        {inner}
-      </motion.a>
+      <motion.div ref={ref} style={{ width, height: width }}>
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={className + " w-full h-full"}
+        >
+          {inner}
+        </a>
+      </motion.div>
     );
   }
 
   return (
-    <motion.button
-      ref={ref}
-      style={{ width, height: width }}
-      className={className}
-    >
-      {inner}
-    </motion.button>
+    <motion.div ref={ref} style={{ width, height: width }}>
+      <button className={className + " w-full h-full"}>
+        {inner}
+      </button>
+    </motion.div>
   );
 }
 
