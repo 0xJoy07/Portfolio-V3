@@ -77,36 +77,24 @@ export default function ProfileCardGrid() {
   return <ProfileCard {...joyProfile} />
 }
 
-function DockButton({ mouseX, icon, href }: { mouseX: any, icon: React.ReactNode, href?: string }) {
-  let ref = useRef<any>(null);
-
-  let distance = useTransform(mouseX, (val: number) => {
-    let bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
-    return val - bounds.x - bounds.width / 2;
-  });
-
-  let scaleSync = useTransform(distance, [-100, 0, 100], [1, 1.5, 1]);
-  let scale = useSpring(scaleSync, { mass: 0.1, stiffness: 150, damping: 12 });
-
-  let marginSync = useTransform(distance, [-100, 0, 100], [0, 8, 0]);
-  let marginInline = useSpring(marginSync, { mass: 0.1, stiffness: 150, damping: 12 });
-
-  const className = "flex items-center justify-center rounded-full hover:bg-white/10 transition-colors duration-300 text-white hover:text-white shrink-0";
+function DockButton({ icon, href }: { icon: React.ReactNode, href?: string }) {
+  const className = "flex items-center justify-center rounded-full hover:bg-white/10 transition-colors duration-300 text-white hover:text-white shrink-0 origin-bottom";
   const inner = (
     <div className="flex items-center justify-center w-[60%] h-[60%]">
       {icon}
     </div>
   );
 
+  const animationProps = {
+    initial: { scale: 1, margin: "0px 0px" },
+    whileHover: { scale: 1.5, margin: "0px 8px" },
+    transition: { type: "spring", stiffness: 300, damping: 15 }
+  };
+
   if (href) {
     return (
-      <motion.div ref={ref} style={{ width: 48, height: 48, scale, marginInline }} className="origin-bottom">
-        <a
-          href={href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={className + " w-full h-full"}
-        >
+      <motion.div style={{ width: 48, height: 48 }} {...animationProps} className={className}>
+        <a href={href} target="_blank" rel="noopener noreferrer" className="w-full h-full flex items-center justify-center">
           {inner}
         </a>
       </motion.div>
@@ -114,8 +102,8 @@ function DockButton({ mouseX, icon, href }: { mouseX: any, icon: React.ReactNode
   }
 
   return (
-    <motion.div ref={ref} style={{ width: 48, height: 48, scale, marginInline }} className="origin-bottom">
-      <button className={className + " w-full h-full"}>
+    <motion.div style={{ width: 48, height: 48 }} {...animationProps} className={className}>
+      <button className="w-full h-full flex items-center justify-center">
         {inner}
       </button>
     </motion.div>
@@ -123,7 +111,6 @@ function DockButton({ mouseX, icon, href }: { mouseX: any, icon: React.ReactNode
 }
 
 function ProfileCard({ name, role, status, avatar, tags = [], isVerified, socials = [] }: ProfileCardProps) {
-  const mouseX = useMotionValue(Infinity);
 
   return (
     <div className="group relative overflow-hidden rounded-3xl bg-card w-full max-w-sm h-full min-h-[400px] flex flex-col justify-end shadow-[12px_12px_24px_rgba(0,0,0,0.15),-12px_-12px_24px_rgba(255,255,255,0.9)] dark:shadow-[12px_12px_24px_rgba(0,0,0,0.3),-12px_-12px_24px_rgba(255,255,255,0.1)] transition-all duration-500 hover:shadow-[20px_20px_40px_rgba(0,0,0,0.2),-20px_-20px_40px_rgba(255,255,255,1)] dark:hover:shadow-[20px_20px_40px_rgba(0,0,0,0.4),-20px_-20px_40px_rgba(255,255,255,0.15)] hover:-translate-y-2">
@@ -182,11 +169,7 @@ function ProfileCard({ name, role, status, avatar, tags = [], isVerified, social
         )}
 
         {/* Action Buttons with macOS Dock animation */}
-        <div
-          className="mt-4 flex justify-center gap-2 h-[64px] items-center"
-          onPointerMove={(e) => mouseX.set(e.clientX)}
-          onPointerLeave={() => mouseX.set(Infinity)}
-        >
+        <div className="mt-4 flex justify-center gap-2 h-[64px] items-center">
           {socials.map((social, idx) => {
             let Icon: React.ComponentType<{ className?: string }> = UserPlus;
             if (social.platform === "github") Icon = GithubIcon;
@@ -197,7 +180,7 @@ function ProfileCard({ name, role, status, avatar, tags = [], isVerified, social
             if (social.platform === "whatsapp") Icon = WhatsappIcon;
 
             return (
-              <DockButton key={idx} mouseX={mouseX} href={social.url} icon={<Icon className="w-full h-full" />} />
+              <DockButton key={idx} href={social.url} icon={<Icon className="w-full h-full" />} />
             )
           })}
         </div>
