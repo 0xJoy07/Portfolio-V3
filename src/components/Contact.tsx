@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Send, Loader2, CheckCircle2, AlertCircle, Phone, Mail, Globe, Download } from "lucide-react";
 import ProfileCardGrid from "@/components/ui/info-card";
 

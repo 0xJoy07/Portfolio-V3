@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useEffect, useState, useCallback, useRef } from "react"
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
+import { motion, useMotionValue, useSpring, useTransform } from "motion/react"
 import Link from "next/link"
 import { LucideIcon, Download } from "lucide-react"
 import { cn } from "@/lib/utils"
