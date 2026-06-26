@@ -152,7 +152,7 @@ function ProfileCard({ name, role, status, avatar, tags = [], isVerified, social
       <div className="relative z-10 w-full p-6 pt-6 bg-background/70 dark:bg-background/40 backdrop-blur-md border-t border-white/20 dark:border-white/10 flex flex-col items-center">
 
         {/* Profile Info */}
-        <div className="text-center transition-transform duration-300 group-hover:-translate-y-1">
+        <div className="text-center transition-transform duration-300">
           <h3 className="text-xl font-bold text-white">
             {name}
           </h3>
