@@ -85,14 +85,14 @@ function DockButton({ mouseX, icon, href }: { mouseX: any, icon: React.ReactNode
     return val - bounds.x - bounds.width / 2;
   });
 
-  let scaleSync = useTransform(distance, [-150, 0, 150], [1, 1.5, 1]);
+  let scaleSync = useTransform(distance, [-100, 0, 100], [1, 1.5, 1]);
   let scale = useSpring(scaleSync, { mass: 0.1, stiffness: 150, damping: 12 });
 
-  let marginSync = useTransform(distance, [-150, 0, 150], [0, 12, 0]);
+  let marginSync = useTransform(distance, [-100, 0, 100], [0, 8, 0]);
   let marginInline = useSpring(marginSync, { mass: 0.1, stiffness: 150, damping: 12 });
-  const className = "flex items-center justify-center rounded-full transition-colors duration-300 text-white shrink-0";
+  const className = "flex items-center justify-center rounded-full hover:bg-white/10 transition-colors duration-300 text-white hover:text-white shrink-0";
   const inner = (
-    <div className="flex items-center justify-center w-[60%] h-[60%] drop-shadow-md">
+    <div className="flex items-center justify-center w-[60%] h-[60%]">
       {icon}
     </div>
   );
@@ -131,7 +131,7 @@ function ProfileCard({ name, role, status, avatar, tags = [], isVerified, social
       <img
         src={avatar}
         alt={name}
-        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700"
       />
 
 
