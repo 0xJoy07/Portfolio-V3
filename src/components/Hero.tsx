@@ -125,10 +125,10 @@ export function Hero() {
       onMouseLeave={() => setMaskVisible(false)}
     >
       <motion.div
-        className="fixed top-0 left-0 w-80 h-80 rounded-full bg-white pointer-events-none z-[100]"
+        className="fixed top-0 left-0 w-40 h-40 rounded-full bg-white pointer-events-none z-[100]"
         style={{
-          x: useTransform(cursorX, x => x - 160),
-          y: useTransform(cursorY, y => y - 160),
+          x: useTransform(cursorX, x => x - 80),
+          y: useTransform(cursorY, y => y - 80),
           mixBlendMode: "difference",
         }}
         initial={{ opacity: 0, scale: 0 }}

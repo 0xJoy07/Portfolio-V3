@@ -5,26 +5,38 @@
             "description": "Verifi* is a sophisticated, full-stack platform designed to combat the global epidemic of misinformation. Built on a modern microservices architecture, Verifi processes multimodal inputs—text, URLs, and images—using an Agentic AI Pipeline powered by OpenRouter (Llama models), Serper.dev, Jina AI, and Sightengine to extract underlying claims, crawl the live web for evidence, and evaluate veracity.",
             "image": "./assets/Verifi.png",
             "github": "https://github.com/0xJoy07/Verifi",
-            "live": "https://verifi-ebon.vercel.app/"
+            "live": "https://verifi-ebon.vercel.app/",
+            "Tech Stack": ["MERN" , "Tailwind" , "Python" , "Serper" , "OpenRouter" , "Jina"]
         },
         {
             "name": "SummAI",
             "description": "Youtube video summary generator using OpenRouter free models.",
             "image": "./assets/SummAI.png",
             "github": "https://github.com/0xJoy07/SummAI",
-            "live": "https://summ-ai-bay.vercel.app/"
+            "live": "https://summ-ai-bay.vercel.app/",
+            "Tech Stack": ["MERN" , "Tailwind" , "Python" , "OpenRouter"]
         },
         {
             "name": "TalentMindAI",
             "description": "a robust Proof-of-Concept that intelligently ranks candidates — going beyond keywords to understand semantic fit, interpret complex job descriptions, and integrate behavioral/activity signals to deliver a fast, accurate ranked shortlist.",
             "image": "./assets/TalentMindAI.png",
-            "github": "https://github.com/0xJoy07/TalentMindAI"
+            "github": "https://github.com/0xJoy07/TalentMindAI",
+            "Tech Stack": ["Next.js" , "MERN" , "Python" ]
         },
         {
             "name": "Agentic-CLI-Tool",
             "description": "A CLI tool for automating development tasks using NVIDIA's free endpoints",
             "image": "./assets/infinite_void.png",
-            "github": "https://github.com/0xJoy07/Agentic-CLI-Tool"
+            "github": "https://github.com/0xJoy07/Agentic-CLI-Tool",
+            "Tech Stack": ["Python" , "NVIDIA"]
+        },
+        {
+            "name": "Portfolio V3",
+            "description": "My current portfolio website, built with Next.js, React, and TailwindCSS.",
+            "image": "./assets/Portfolio.png",
+            "github": "https://github.com/0xJoy07/Portfolio-V3",
+            "live": "https://0xjoy07.vercel.app/",
+            "Tech Stack": ["Next.js" , "Tailwind"]
         }
     ]
 }
