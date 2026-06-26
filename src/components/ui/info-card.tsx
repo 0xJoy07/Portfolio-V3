@@ -85,9 +85,11 @@ function DockButton({ mouseX, icon, href }: { mouseX: any, icon: React.ReactNode
     return val - bounds.x - bounds.width / 2;
   });
 
-  let widthSync = useTransform(distance, [-100, 0, 100], [48, 72, 48]);
-  let width = useSpring(widthSync, { mass: 0.1, stiffness: 150, damping: 12 });
-  let widthPx = useTransform(width, (w) => `${w}px`);
+  let scaleSync = useTransform(distance, [-100, 0, 100], [1, 1.5, 1]);
+  let scale = useSpring(scaleSync, { mass: 0.1, stiffness: 150, damping: 12 });
+
+  let marginSync = useTransform(distance, [-100, 0, 100], [0, 8, 0]);
+  let marginInline = useSpring(marginSync, { mass: 0.1, stiffness: 150, damping: 12 });
 
   const className = "flex items-center justify-center rounded-full hover:bg-white/10 transition-colors duration-300 text-white hover:text-white shrink-0";
   const inner = (
@@ -98,7 +100,7 @@ function DockButton({ mouseX, icon, href }: { mouseX: any, icon: React.ReactNode
 
   if (href) {
     return (
-      <motion.div ref={ref} style={{ width: widthPx, height: widthPx }}>
+      <motion.div ref={ref} style={{ width: 48, height: 48, scale, marginInline }} className="origin-bottom">
         <a
           href={href}
           target="_blank"
@@ -112,7 +114,7 @@ function DockButton({ mouseX, icon, href }: { mouseX: any, icon: React.ReactNode
   }
 
   return (
-    <motion.div ref={ref} style={{ width: widthPx, height: widthPx }}>
+    <motion.div ref={ref} style={{ width: 48, height: 48, scale, marginInline }} className="origin-bottom">
       <button className={className + " w-full h-full"}>
         {inner}
       </button>
