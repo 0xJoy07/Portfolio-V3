@@ -131,7 +131,7 @@ function ProfileCard({ name, role, status, avatar, tags = [], isVerified, social
       <img
         src={avatar}
         alt={name}
-        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700"
       />
 
 
