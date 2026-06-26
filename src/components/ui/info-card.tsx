@@ -194,7 +194,7 @@ function ProfileCard({ name, role, status, avatar, tags = [], isVerified, social
           onMouseLeave={() => mouseX.set(Infinity)}
         >
           {socials.map((social, idx) => {
-            let Icon = UserPlus;
+            let Icon: React.ComponentType<{ className?: string }> = UserPlus;
             if (social.platform === "github") Icon = GithubIcon;
             if (social.platform === "linkedin") Icon = LinkedinIcon;
             if (social.platform === "twitter") Icon = TwitterIcon;
