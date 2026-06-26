@@ -88,7 +88,7 @@ function DockButton({ mouseX, icon, href }: { mouseX: any, icon: React.ReactNode
   let widthSync = useTransform(distance, [-100, 0, 100], [48, 72, 48]);
   let width = useSpring(widthSync, { mass: 0.1, stiffness: 150, damping: 12 });
 
-  const className = "flex items-center justify-center rounded-full hover:bg-foreground/10 transition-colors duration-300 text-foreground/80 hover:text-foreground shrink-0";
+  const className = "flex items-center justify-center rounded-full hover:bg-white/10 transition-colors duration-300 text-white hover:text-white shrink-0";
   const inner = (
     <div className="flex items-center justify-center w-[60%] h-[60%]">
       {icon}
@@ -160,10 +160,10 @@ function ProfileCard({ name, role, status, avatar, tags = [], isVerified, social
         
         {/* Profile Info */}
         <div className="text-center transition-transform duration-300 group-hover:-translate-y-1">
-          <h3 className="text-xl font-bold text-foreground">
+          <h3 className="text-xl font-bold text-white">
             {name}
           </h3>
-          <p className="mt-1 text-sm font-medium text-muted-foreground">
+          <p className="mt-1 text-sm font-medium text-white/90">
             {role}
           </p>
         </div>

@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Send, Loader2, CheckCircle2, AlertCircle, Phone, Mail, Globe } from "lucide-react";
+import { Send, Loader2, CheckCircle2, AlertCircle, Phone, Mail, Globe, Download } from "lucide-react";
 import ProfileCardGrid from "@/components/ui/info-card";
 
 // Contact Form component
@@ -149,9 +149,18 @@ export function Contact() {
           <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-6 font-sans tracking-tight">
             Let&apos;s Work Together
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto mb-8">
             Have a project in mind or just want to say hi? Feel free to reach out using the form below or connect with me directly.
           </p>
+          <a 
+            href="/resume.pdf" 
+            download="Resume.pdf"
+            className="btn-sweep-fill group inline-flex items-center justify-center gap-2 h-12 px-8 text-sm font-sans tracking-widest rounded-full bg-transparent border border-foreground text-foreground hover:text-background transition-colors duration-300"
+          >
+            <span className="relative z-10 flex items-center gap-2">
+              Download Resume <Download size={18} />
+            </span>
+          </a>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-stretch">
           <div className="flex w-full h-full items-stretch justify-center">

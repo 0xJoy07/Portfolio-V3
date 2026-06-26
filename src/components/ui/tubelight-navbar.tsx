@@ -3,10 +3,11 @@
 import React, { useEffect, useState, useCallback, useRef } from "react"
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
 import Link from "next/link"
-import { LucideIcon } from "lucide-react"
+import { LucideIcon, Download } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 import { ThemeToggle } from "./theme-toggle"
+import { OriginButton } from "./origin-button"
 
 interface NavItem {
   name: string
@@ -146,15 +147,15 @@ export function NavBar({ items, className }: NavBarProps) {
           ))}
         </div>
 
-        {/* ── Right: Theme toggle + "Let's Contact" ── */}
+        {/* ── Right: Theme toggle + Buttons ── */}
         <div className="flex items-center gap-2 flex-shrink-0">
           <div className="hidden md:block">
             <ThemeToggle />
           </div>
 
-          {/* "Let's Contact" — collapses when scrolled */}
+          {/* Buttons — collapse when scrolled */}
           <motion.div
-            className="overflow-hidden whitespace-nowrap hidden md:block flex-shrink-0"
+            className="overflow-hidden whitespace-nowrap hidden md:flex items-center gap-2 flex-shrink-0"
             animate={{
               width: isScrolled ? 0 : "auto",
               opacity: isScrolled ? 0 : 1,
@@ -162,6 +163,15 @@ export function NavBar({ items, className }: NavBarProps) {
             }}
             transition={{ duration: 0.4, ease: EASE }}
           >
+            <a 
+              href="/resume.pdf" 
+              download="Resume.pdf"
+              className="btn-sweep-fill inline-flex items-center h-[38px] text-sm font-sans tracking-widest px-5 border border-foreground bg-transparent text-foreground rounded-full hover:text-background transition-colors duration-300"
+            >
+              <span className="relative z-10 flex items-center gap-1.5">
+                Resume <Download size={16} />
+              </span>
+            </a>
             <Link
               href="#contact"
               onClick={(e) => {
@@ -169,7 +179,7 @@ export function NavBar({ items, className }: NavBarProps) {
                 const el = document.getElementById("contact")
                 if (el) el.scrollIntoView({ behavior: "smooth", block: "start" })
               }}
-              className="btn-sweep-fill inline-flex items-center text-sm font-sans tracking-widest px-5 py-2 border border-foreground bg-transparent text-foreground rounded-full hover:text-background transition-colors duration-300"
+              className="btn-sweep-fill inline-flex items-center h-[38px] text-sm font-sans tracking-widest px-5 border border-foreground bg-transparent text-foreground rounded-full hover:text-background transition-colors duration-300"
             >
               <span className="relative z-10">
                 Let&apos;s Connect
