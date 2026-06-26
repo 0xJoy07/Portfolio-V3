@@ -134,14 +134,7 @@ function ProfileCard({ name, role, status, avatar, tags = [], isVerified, social
         className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
       />
 
-      {/* Verified badge */}
-      {isVerified && (
-        <div className="absolute top-4 right-4 z-20">
-          <div className="rounded-full bg-blue-500 dark:bg-blue-600 p-1.5 shadow-[2px_2px_4px_rgba(0,0,0,0.1)] dark:shadow-[2px_2px_4px_rgba(0,0,0,0.3)] transition-all duration-300 hover:scale-110">
-            <Star className="h-4 w-4 fill-white text-white" />
-          </div>
-        </div>
-      )}
+
 
       {/* Status indicator */}
       {status && (
@@ -190,7 +183,7 @@ function ProfileCard({ name, role, status, avatar, tags = [], isVerified, social
         {/* Action Buttons with macOS Dock animation */}
         <div 
           className="mt-4 flex justify-center gap-2 h-[64px] items-center"
-          onMouseMove={(e) => mouseX.set(e.pageX)}
+          onMouseMove={(e) => mouseX.set(e.clientX)}
           onMouseLeave={() => mouseX.set(Infinity)}
         >
           {socials.map((social, idx) => {
