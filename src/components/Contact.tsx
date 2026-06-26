@@ -123,12 +123,27 @@ function ContactFormSection({
         <motion.button 
           type="submit" 
           disabled={isSending}
-          whileHover={{ scale: 1.02 }}
+          whileHover="hover"
           whileTap={{ scale: 0.98 }}
+          variants={{ hover: { scale: 1.02 } }}
           className="btn-sweep-fill group w-full rounded-lg bg-transparent border border-foreground text-foreground font-medium py-3 mt-2 hover:text-background hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] transition-colors duration-300 flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-none"
         >
           <span className="relative z-10 flex items-center gap-2">
-            {isSending ? (<><Loader2 size={18} className="animate-spin" /> Sending...</>) : (<>Submit <Send size={18} className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" /></>)}
+            {isSending ? (
+              <><Loader2 size={18} className="animate-spin" /> Sending...</>
+            ) : (
+              <>
+                Submit 
+                <motion.div
+                  variants={{
+                    hover: { x: 4, y: -4 }
+                  }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <Send size={18} />
+                </motion.div>
+              </>
+            )}
           </span>
         </motion.button>
       </form>
