@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
 import { TypeAnimation } from "react-type-animation";
 import { useRef, useEffect, useState } from "react";
 import { MeshGradientSVG } from "./ui/shader-svg";

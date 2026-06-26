@@ -1,5 +1,5 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "motion/react";
 import { ReactNode } from "react";
 
 type TimelineContentProps = {

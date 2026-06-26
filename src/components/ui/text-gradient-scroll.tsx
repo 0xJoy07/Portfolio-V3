@@ -1,7 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useRef } from "react";
-import { useScroll, useTransform, motion, MotionValue } from "framer-motion";
+import { useScroll, useTransform, motion, MotionValue } from "motion/react";
 import { cn } from "@/lib/utils";
 
 type TextOpacityEnum = "none" | "soft" | "medium";

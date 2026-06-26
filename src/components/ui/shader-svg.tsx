@@ -1,7 +1,7 @@
 "use client"
 
 import { MeshGradient } from "@paper-design/shaders-react"
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
+import { motion, useMotionValue, useSpring, useTransform } from "motion/react"
 import { useEffect, useRef } from "react"
 
 export function MeshGradientSVG() {

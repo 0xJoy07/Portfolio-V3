@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion, useTransform, useSpring, useMotionValue } from "framer-motion";
+import { motion, useTransform, useSpring, useMotionValue } from "motion/react";
 import { Code2, Globe, Cpu } from "lucide-react";
 import { cn } from "@/lib/utils";
 
