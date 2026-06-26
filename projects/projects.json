@@ -1,0 +1,30 @@
+{
+    "projects": [
+        {
+            "name": "Verifi",
+            "description": "Verifi* is a sophisticated, full-stack platform designed to combat the global epidemic of misinformation. Built on a modern microservices architecture, Verifi processes multimodal inputs—text, URLs, and images—using an Agentic AI Pipeline powered by OpenRouter (Llama models), Serper.dev, Jina AI, and Sightengine to extract underlying claims, crawl the live web for evidence, and evaluate veracity.",
+            "image": "./assets/Verifi.png",
+            "github": "https://github.com/0xJoy07/Verifi",
+            "live": "https://verifi-ebon.vercel.app/"
+        },
+        {
+            "name": "SummAI",
+            "description": "Youtube video summary generator using OpenRouter free models.",
+            "image": "./assets/SummAI.png",
+            "github": "https://github.com/0xJoy07/SummAI",
+            "live": "https://summ-ai-bay.vercel.app/"
+        },
+        {
+            "name": "TalentMindAI",
+            "description": "a robust Proof-of-Concept that intelligently ranks candidates — going beyond keywords to understand semantic fit, interpret complex job descriptions, and integrate behavioral/activity signals to deliver a fast, accurate ranked shortlist.",
+            "image": "./assets/TalentMindAI.png",
+            "github": "https://github.com/0xJoy07/TalentMindAI"
+        },
+        {
+            "name": "Agentic-CLI-Tool",
+            "description": "A CLI tool for automating development tasks using NVIDIA's free endpoints",
+            "image": "./assets/infinite_void.png",
+            "github": "https://github.com/0xJoy07/Agentic-CLI-Tool"
+        }
+    ]
+}

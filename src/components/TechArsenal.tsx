@@ -60,7 +60,6 @@ const categories = [
       { name: "GitHub", slug: "github", darkSlug: "github/white", lightSlug: "github" },
       { name: "Git", slug: "git" },
       { name: "Linux", slug: "linux" },
-      { name: "Docker", slug: "docker" },
       { name: "Figma", slug: "figma" },
     ]
   }

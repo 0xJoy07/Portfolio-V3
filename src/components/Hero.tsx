@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { MeshGradientSVG } from "./ui/shader-svg";
 import { ScatterDots } from "./ui/scatter-dots";
 import { TechRow } from "./TechRow";
@@ -73,6 +73,18 @@ function DockIcon({ mouseX, href, children, target = "_blank" }: { mouseX: any, 
 
 export function Hero() {
   const dockMouseX = useMotionValue(Infinity);
+  const [maskVisible, setMaskVisible] = useState(false);
+  const cursorX = useMotionValue(-100);
+  const cursorY = useMotionValue(-100);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      cursorX.set(e.clientX);
+      cursorY.set(e.clientY);
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [cursorX, cursorY]);
 
   const revealVariants = {
     visible: (i: number) => ({
@@ -106,7 +118,23 @@ export function Hero() {
   };
 
   return (
-    <section id="home" className="relative min-h-screen flex flex-col overflow-hidden pt-24 bg-background">
+    <section 
+      id="home" 
+      className="relative min-h-screen flex flex-col overflow-hidden pt-24 bg-background"
+      onMouseEnter={() => setMaskVisible(true)}
+      onMouseLeave={() => setMaskVisible(false)}
+    >
+      <motion.div
+        className="fixed top-0 left-0 w-80 h-80 rounded-full bg-white pointer-events-none z-[100]"
+        style={{
+          x: useTransform(cursorX, x => x - 160),
+          y: useTransform(cursorY, y => y - 160),
+          mixBlendMode: "difference",
+        }}
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: maskVisible ? 1 : 0, scale: maskVisible ? 1 : 0.5 }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
+      />
       <ScatterDots />
 
       {/* Main hero content */}
@@ -159,8 +187,6 @@ export function Hero() {
             <TypeAnimation
               sequence={[
                 "MERN + Next.js Developer",
-                2000,
-                "Vibe Coder",
                 2000,
                 "Machine Learning Explorer",
                 2000,
