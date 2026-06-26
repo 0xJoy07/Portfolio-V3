@@ -96,7 +96,7 @@ export function NavBar({ items, className }: NavBarProps) {
         )}
         animate={{
           borderRadius: isScrolled ? 9999 : 0,
-          maxWidth: isScrolled ? 720 : 3000,
+          maxWidth: isScrolled ? 850 : 3000,
           paddingLeft: isScrolled ? 8 : 28,
           paddingRight: isScrolled ? 8 : 28,
           paddingTop: isScrolled ? 6 : 12,

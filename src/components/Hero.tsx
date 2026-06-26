@@ -118,8 +118,8 @@ export function Hero() {
   };
 
   return (
-    <section 
-      id="home" 
+    <section
+      id="home"
       className="relative min-h-screen flex flex-col overflow-hidden pt-24 bg-background"
       onMouseEnter={() => setMaskVisible(true)}
       onMouseLeave={() => setMaskVisible(false)}
