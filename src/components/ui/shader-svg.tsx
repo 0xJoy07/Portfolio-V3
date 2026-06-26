@@ -45,7 +45,7 @@ export function MeshGradientSVG() {
 
   const eye1Cx = useTransform(eyeOffsetX, x => 80 + x)
   const eye1Cy = useTransform(eyeOffsetY, y => 120 + y)
-  
+
   const eye2Cx = useTransform(eyeOffsetX, x => 150 + x)
   const eye2Cy = useTransform(eyeOffsetY, y => 120 + y)
 
@@ -63,15 +63,15 @@ export function MeshGradientSVG() {
       }}
       style={{ transformOrigin: "top center" }}
     >
-      <motion.a 
+      <motion.a
         href="mailto:joysengupta521@gmail.com"
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1, transition: { delay: 2, duration: 0.5, type: "spring" } }}
         whileHover={{ scale: 1.05, rotate: -3 }}
         whileTap={{ scale: 0.95 }}
-        className="absolute -top-4 -left-32 md:-left-40 bg-foreground text-background w-32 h-32 md:w-40 md:h-40 rounded-full rounded-br-sm flex items-center justify-center shadow-2xl z-20 text-xl md:text-2xl font-black tracking-tighter text-center cursor-pointer"
+        className="absolute top-2 -left-6 sm:top-4 sm:-left-12 md:-top-4 md:-left-40 bg-foreground text-background w-28 h-28 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-full rounded-br-sm max-[770px]:hidden flex items-center justify-center shadow-2xl z-20 text-base sm:text-lg md:text-2xl font-black tracking-tighter text-center cursor-pointer pointer-events-auto"
       >
-        <span>let&apos;s<br/>connect</span>
+        <span>let&apos;s<br />connect</span>
       </motion.a>
       <svg ref={svgRef} xmlns="http://www.w3.org/2000/svg" width="231" height="289" viewBox="0 0 231 289" className="w-full h-auto">
         <defs>

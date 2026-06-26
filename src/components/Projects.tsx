@@ -56,7 +56,7 @@ export function Projects() {
             key={project.id}
             index={index}
             onClick={() => handleCardTap(project.id)}
-            className="w-full rounded-2xl border border-border bg-card shadow-2xl overflow-hidden flex flex-col md:flex-row h-[450px] mb-24 cursor-pointer"
+            className="w-full rounded-2xl border border-border bg-card shadow-2xl overflow-hidden flex flex-col md:flex-row h-auto md:h-[450px] mb-24 cursor-pointer"
             incrementY={40}
             incrementZ={0}
             offsetTop="10vh"

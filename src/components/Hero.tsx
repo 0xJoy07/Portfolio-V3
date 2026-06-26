@@ -125,7 +125,7 @@ export function Hero() {
       onMouseLeave={() => setMaskVisible(false)}
     >
       <motion.div
-        className="fixed top-0 left-0 w-40 h-40 rounded-full bg-white pointer-events-none z-[100]"
+        className="hidden md:block fixed top-0 left-0 w-40 h-40 rounded-full bg-white pointer-events-none z-[100]"
         style={{
           x: useTransform(cursorX, x => x - 80),
           y: useTransform(cursorY, y => y - 80),
@@ -138,14 +138,14 @@ export function Hero() {
       <ScatterDots />
 
       {/* Main hero content */}
-      <div className="flex-1 flex items-center justify-between px-8 md:px-16">
+      <div className="flex-1 flex flex-col lg:flex-row items-center justify-between px-4 sm:px-8 md:px-16 gap-12 lg:gap-0 pb-12 lg:pb-0 pt-8 lg:pt-0">
 
         {/* Left side: Name & Title */}
-        <div className="flex flex-col z-10 max-w-3xl">
+        <div className="flex flex-col z-10 max-w-3xl w-full lg:w-1/2">
           <motion.h1
             initial="hidden"
             animate="visible"
-            className="text-7xl md:text-4xl font-bold tracking-tighter mb-4 text-foreground font-sans flex flex-wrap"
+            className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tighter mb-4 text-foreground font-sans flex flex-wrap"
           >
             {"Hi I'm".split("").map((char, index) => (
               <motion.span
@@ -161,7 +161,7 @@ export function Hero() {
           <motion.h1
             initial="hidden"
             animate="visible"
-            className="text-7xl md:text-9xl font-extrabold tracking-tighter mb-4 text-foreground font-sans flex flex-col"
+            className="text-6xl md:text-8xl lg:text-9xl font-extrabold tracking-tighter mb-4 text-foreground font-sans flex flex-col"
           >
             <div className="flex flex-wrap">
               {"Joy Sengupta".split("").map((char, index) => (
@@ -182,7 +182,7 @@ export function Hero() {
             initial="hidden"
             animate="visible"
             variants={textVariants}
-            className="text-2xl md:text-4xl text-foreground/70 font-medium font-sans min-h-[4rem]"
+            className="text-xl md:text-2xl lg:text-4xl text-foreground/70 font-medium font-sans min-h-[4rem]"
           >
             <TypeAnimation
               sequence={[
@@ -213,8 +213,8 @@ export function Hero() {
         </div>
 
         {/* Right side: Ghost & Social Links */}
-        <div className="flex flex-col items-center justify-center gap-6 z-10 -mt-16 lg:-mt-24">
-          <div className="hidden lg:block">
+        <div className="flex flex-col items-center justify-center gap-6 z-10 w-full lg:w-1/2">
+          <div className="w-full max-w-[200px] sm:max-w-xs md:max-w-sm lg:max-w-md mx-auto">
             <MeshGradientSVG />
           </div>
           <motion.div
@@ -223,7 +223,7 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.6 }}
             onMouseMove={(e) => dockMouseX.set(e.pageX)}
             onMouseLeave={() => dockMouseX.set(Infinity)}
-            className="flex flex-col lg:flex-row gap-2 items-center bg-background/60 border border-border backdrop-blur-xl p-2 rounded-full shadow-lg"
+            className="flex flex-row flex-wrap justify-center gap-2 items-center bg-background/60 border border-border backdrop-blur-xl p-2 rounded-full shadow-lg"
           >
             <DockIcon mouseX={dockMouseX} href="https://github.com/0xJoy07"><GithubIcon className="w-full h-full" /></DockIcon>
             <DockIcon mouseX={dockMouseX} href="https://linkedin.com/in/beinggojo"><LinkedinIcon className="w-full h-full" /></DockIcon>
@@ -233,12 +233,7 @@ export function Hero() {
           </motion.div>
         </div>
 
-        {/* Mobile view Mesh Gradient (if screen is small) */}
-        <div className="lg:hidden absolute bottom-[25%] left-1/2 -translate-x-1/2 z-0 opacity-50 pointer-events-none">
-          <div className="scale-75">
-            <MeshGradientSVG />
-          </div>
-        </div>
+
 
       </div>{/* end main hero content */}
 

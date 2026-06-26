@@ -338,7 +338,7 @@ export function Footer({
 
           {/* Link Groups */}
           {linkGroups.length > 0 && (
-            <div className="w-full lg:w-2/3 flex flex-col sm:flex-row justify-end gap-12 sm:gap-16 md:gap-24">
+            <div className="w-full lg:w-2/3 flex flex-row justify-between gap-2 sm:justify-end sm:gap-16 md:gap-24">
               {linkGroups.map((group, i) => (
                 <div key={i} className="space-y-4">
                   <h3 className="text-sm font-semibold text-foreground">{group.title}</h3>

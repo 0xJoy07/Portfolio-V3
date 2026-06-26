@@ -1,9 +1,9 @@
 "use client"
 
 import React, { useEffect, useState, useCallback, useRef } from "react"
-import { motion, useMotionValue, useSpring, useTransform } from "motion/react"
+import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from "motion/react"
 import Link from "next/link"
-import { LucideIcon, Download } from "lucide-react"
+import { LucideIcon, Download, Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 import { ThemeToggle } from "./theme-toggle"
@@ -25,6 +25,7 @@ const EASE = [0.4, 0, 0.2, 1] as const
 export function NavBar({ items, className }: NavBarProps) {
   const [activeTab, setActiveTab] = useState(items[0].name)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const mouseX = useMotionValue(Infinity)
 
   // Track scroll position for morph
@@ -74,8 +75,9 @@ export function NavBar({ items, className }: NavBarProps) {
   }, [])
 
   return (
-    /* Outer wrapper — animates padding to "squeeze" the nav inward on scroll */
-    <motion.div
+    <>
+      {/* Outer wrapper — animates padding to "squeeze" the nav inward on scroll */}
+      <motion.div
       className={cn(
         "fixed top-0 left-0 right-0 z-50 flex justify-center",
         className,
@@ -90,7 +92,7 @@ export function NavBar({ items, className }: NavBarProps) {
       {/* Nav bar — same element always, properties morph smoothly */}
       <motion.nav
         className={cn(
-          "w-full flex items-center backdrop-blur-xl transition-[background-color,border-color,box-shadow] duration-500",
+          "w-full flex items-center justify-between backdrop-blur-xl transition-[background-color,border-color,box-shadow] duration-500",
           isScrolled
             ? "bg-background/60 border border-border shadow-lg"
             : "bg-background/80 border border-transparent border-b-border/30 shadow-none",
@@ -132,7 +134,7 @@ export function NavBar({ items, className }: NavBarProps) {
 
         {/* ── Center: Nav links ── */}
         <div
-          className="flex items-center gap-0.5 mx-auto"
+          className="hidden md:flex items-center gap-0.5 mx-auto"
           onMouseMove={(e) => mouseX.set(e.pageX)}
           onMouseLeave={() => mouseX.set(Infinity)}
         >
@@ -149,9 +151,17 @@ export function NavBar({ items, className }: NavBarProps) {
 
         {/* ── Right: Theme toggle + Buttons ── */}
         <div className="flex items-center gap-2 flex-shrink-0">
-          <div className="hidden md:block">
+          <div>
             <ThemeToggle />
           </div>
+
+          {/* Mobile menu toggle */}
+          <button
+            className="md:hidden p-2 ml-1 text-foreground/70 hover:text-foreground transition-colors rounded-full hover:bg-foreground/5"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
 
           {/* Buttons — collapse when scrolled */}
           <motion.div
@@ -163,8 +173,8 @@ export function NavBar({ items, className }: NavBarProps) {
             }}
             transition={{ duration: 0.4, ease: EASE }}
           >
-            <a 
-              href="/resume.pdf" 
+            <a
+              href="/resume.pdf"
               download="Resume.pdf"
               className="btn-sweep-fill inline-flex items-center h-[38px] text-sm font-sans tracking-widest px-5 border border-foreground bg-transparent text-foreground rounded-full hover:text-background transition-colors duration-300"
             >
@@ -189,6 +199,42 @@ export function NavBar({ items, className }: NavBarProps) {
         </div>
       </motion.nav>
     </motion.div>
+
+    {/* Mobile Menu Dropdown */}
+    <motion.div
+      initial={false}
+      animate={
+        isMobileMenuOpen 
+          ? { opacity: 1, y: 0, scale: 1, pointerEvents: "auto" }
+          : { opacity: 0, y: -10, scale: 0.95, pointerEvents: "none" }
+      }
+      transition={{ duration: 0.2 }}
+      className="fixed top-24 right-4 w-56 z-[100] md:hidden bg-background/95 backdrop-blur-xl border border-border shadow-2xl rounded-2xl p-2 flex flex-col gap-1 origin-top-right"
+    >
+      {items.map((item) => {
+        const Icon = item.icon;
+        const isActive = activeTab === item.name;
+        return (
+          <Link
+            key={item.name}
+            href={item.url}
+            onClick={(e) => {
+              e.preventDefault();
+              handleClick(item);
+              setIsMobileMenuOpen(false);
+            }}
+            className={cn(
+              "flex items-center gap-3 px-4 py-3 rounded-xl transition-colors text-sm font-medium tracking-wide",
+              isActive ? "bg-primary/10 text-primary" : "text-foreground/70 hover:bg-foreground/5 hover:text-foreground"
+            )}
+          >
+            <Icon size={18} />
+            <span>{item.name}</span>
+          </Link>
+        );
+      })}
+    </motion.div>
+    </>
   )
 }
 
