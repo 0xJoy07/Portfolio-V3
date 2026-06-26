@@ -90,7 +90,6 @@ function DockButton({ mouseX, icon, href }: { mouseX: any, icon: React.ReactNode
 
   let marginSync = useTransform(distance, [-100, 0, 100], [0, 8, 0]);
   let marginInline = useSpring(marginSync, { mass: 0.1, stiffness: 150, damping: 12 });
-
   const className = "flex items-center justify-center rounded-full hover:bg-white/10 transition-colors duration-300 text-white hover:text-white shrink-0";
   const inner = (
     <div className="flex items-center justify-center w-[60%] h-[60%]">
@@ -126,7 +125,7 @@ function ProfileCard({ name, role, status, avatar, tags = [], isVerified, social
   const mouseX = useMotionValue(Infinity);
 
   return (
-    <div className="group relative overflow-hidden rounded-3xl bg-card w-full max-w-sm h-full min-h-[400px] flex flex-col justify-end shadow-[12px_12px_24px_rgba(0,0,0,0.15),-12px_-12px_24px_rgba(255,255,255,0.9)] dark:shadow-[12px_12px_24px_rgba(0,0,0,0.3),-12px_-12px_24px_rgba(255,255,255,0.1)] transition-all duration-500 hover:shadow-[20px_20px_40px_rgba(0,0,0,0.2),-20px_-20px_40px_rgba(255,255,255,1)] dark:hover:shadow-[20px_20px_40px_rgba(0,0,0,0.4),-20px_-20px_40px_rgba(255,255,255,0.15)] hover:-translate-y-2">
+    <div className="group relative overflow-hidden rounded-3xl bg-card w-full max-w-sm h-full min-h-[400px] flex flex-col justify-end shadow-[12px_12px_24px_rgba(0,0,0,0.15),-12px_-12px_24px_rgba(255,255,255,0.9)] dark:shadow-[12px_12px_24px_rgba(0,0,0,0.3),-12px_-12px_24px_rgba(255,255,255,0.1)] transition-all duration-500 ">
 
       {/* Background Image */}
       <img
