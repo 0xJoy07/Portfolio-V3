@@ -125,7 +125,7 @@ function ProfileCard({ name, role, status, avatar, tags = [], isVerified, social
   const mouseX = useMotionValue(Infinity);
 
   return (
-    <div className="group relative overflow-hidden rounded-3xl bg-card w-full max-w-sm h-full min-h-[400px] flex flex-col justify-end shadow-[12px_12px_24px_rgba(0,0,0,0.15),-12px_-12px_24px_rgba(255,255,255,0.9)] dark:shadow-[12px_12px_24px_rgba(0,0,0,0.3),-12px_-12px_24px_rgba(255,255,255,0.1)] transition-all duration-500 ">
+    <div className="group relative overflow-hidden rounded-3xl bg-card w-full max-w-sm h-full min-h-[400px] flex flex-col justify-end transition-all duration-500 ">
 
       {/* Background Image */}
       <img
