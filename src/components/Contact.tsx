@@ -170,8 +170,8 @@ export function Contact() {
             Have a project in mind or just want to say hi? Feel free to reach out using the form below or connect with me directly.
           </p>
           <a 
-            href="/resume.pdf" 
-            download="Resume.pdf"
+            href="/Joy_Sengupta_Resume.pdf" 
+            download="Joy_Sengupta_Resume.pdf"
             className="btn-sweep-fill group inline-flex items-center justify-center gap-2 h-12 px-8 text-sm font-sans tracking-widest rounded-full bg-transparent border border-foreground text-foreground hover:text-background transition-colors duration-300"
           >
             <span className="relative z-10 flex items-center gap-2">
