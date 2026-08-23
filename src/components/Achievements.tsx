@@ -17,6 +17,13 @@ const achievementsData = [
     description: "Scored 88/100",
     progress: 100,
     achievedAt: "2026-05-01T00:00:00Z",
+  },
+  {
+    id: "vibeforge",
+    name: "Vibeforge Hackathon (Adamas University)",
+    description: "Finalist",
+    progress: 100,
+    achievedAt: "2026-08-22T00:00:00Z",
   }
 ];
 
