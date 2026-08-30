@@ -139,18 +139,29 @@
   }
 }
 
-/* Smooth theme transition */
-html,
-html *,
-html *::before,
-html *::after {
-  transition: background-color 500ms ease,
-    color 500ms ease,
-    border-color 500ms ease,
-    box-shadow 500ms ease,
-    fill 500ms ease,
-    stroke 500ms ease,
-    opacity 400ms ease;
+/* Smooth theme transition — scoped to specific properties only.
+   Applying transitions to html * (every element) causes hundreds of
+   simultaneous compositor layers and makes theme switching visibly laggy. */
+:root,
+.dark {
+  transition:
+    background-color 300ms ease,
+    color 300ms ease,
+    border-color 300ms ease;
+}
+
+/* Elements that need box-shadow or fill/stroke transitions */
+button, a, input, textarea,
+[class*="border"], [class*="shadow"] {
+  transition:
+    background-color 300ms ease,
+    color 300ms ease,
+    border-color 300ms ease,
+    box-shadow 300ms ease;
+}
+
+svg path, svg rect, svg circle, svg ellipse, svg line {
+  transition: fill 300ms ease, stroke 300ms ease;
 }
 
 /* Exclude button sweep from global theme transition */

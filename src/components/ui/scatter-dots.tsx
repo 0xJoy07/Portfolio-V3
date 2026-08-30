@@ -5,16 +5,22 @@ import { useTheme } from "next-themes";
 
 // Maximum dots to render regardless of viewport size
 const MAX_DOTS = 1200;
-const SPACING = 28;       // increased from 20 → fewer dots, same visual effect
+const SPACING = 28;
 const RADIUS = 1;
 const MOUSE_RADIUS = 120;
 const SCATTER_DIST = 45;
 const SPRING = 0.07;
-const IDLE_TIMEOUT = 150; // ms without mouse movement before pausing rAF
+const IDLE_TIMEOUT = 150;
 
 export function ScatterDots() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { resolvedTheme } = useTheme();
+  // Keep a ref to the current theme so the rAF loop can read it
+  // without the entire effect needing to re-run on theme change.
+  const themeRef = useRef(resolvedTheme);
+  useEffect(() => {
+    themeRef.current = resolvedTheme;
+  }, [resolvedTheme]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -46,7 +52,6 @@ export function ScatterDots() {
       canvas.width = width;
       canvas.height = height;
 
-      // Build full grid then randomly sample down to MAX_DOTS
       const all: Dot[] = [];
       for (let x = 0; x < width; x += SPACING) {
         for (let y = 0; y < height; y += SPACING) {
@@ -57,7 +62,6 @@ export function ScatterDots() {
       if (all.length <= MAX_DOTS) {
         dots = all;
       } else {
-        // Fisher-Yates partial shuffle to get a uniform random sample
         for (let i = 0; i < MAX_DOTS; i++) {
           const j = i + Math.floor(Math.random() * (all.length - i));
           [all[i], all[j]] = [all[j], all[i]];
@@ -66,14 +70,14 @@ export function ScatterDots() {
       }
     };
 
-    const dotColor = () =>
-      resolvedTheme === "dark"
+    const getDotColor = () =>
+      themeRef.current === "dark"
         ? "rgba(255, 255, 255, 0.15)"
         : "rgba(0, 0, 0, 0.25)";
 
     const draw = () => {
       ctx.clearRect(0, 0, width, height);
-      ctx.fillStyle = dotColor();
+      ctx.fillStyle = getDotColor();
 
       let allSettled = true;
 
@@ -107,7 +111,6 @@ export function ScatterDots() {
         ctx.fill();
       });
 
-      // Stop the loop once all dots have settled back to their base positions
       if (allSettled && mouse.x === -1000) {
         isRunning = false;
         return;
@@ -127,7 +130,6 @@ export function ScatterDots() {
       idleTimer = setTimeout(() => {
         mouse.x = -1000;
         mouse.y = -1000;
-        // loop will self-terminate once dots settle
       }, IDLE_TIMEOUT);
     };
 
@@ -143,7 +145,6 @@ export function ScatterDots() {
       if (idleTimer) clearTimeout(idleTimer);
       mouse.x = -1000;
       mouse.y = -1000;
-      // loop will self-terminate once dots settle
     };
 
     let resizeTimer: ReturnType<typeof setTimeout> | null = null;
@@ -156,8 +157,8 @@ export function ScatterDots() {
     };
 
     init();
-    // Draw one static frame immediately so dots are visible without needing mouse
-    ctx.fillStyle = dotColor();
+    // Paint one static frame immediately so dots are visible without mouse activity
+    ctx.fillStyle = getDotColor();
     dots.forEach((dot) => {
       ctx.beginPath();
       ctx.arc(dot.x, dot.y, RADIUS, 0, Math.PI * 2);
@@ -176,7 +177,10 @@ export function ScatterDots() {
       if (idleTimer) clearTimeout(idleTimer);
       if (resizeTimer) clearTimeout(resizeTimer);
     };
-  }, [resolvedTheme]);
+  // Intentionally no resolvedTheme in deps — theme changes are handled
+  // via themeRef so the canvas doesn't tear down and reinitialize.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
