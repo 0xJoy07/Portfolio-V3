@@ -128,6 +128,7 @@ export function Projects() {
                     className="w-full h-full object-contain drop-shadow-2xl"
                     src={project.image.replace('./', '/')}
                     alt={project.name}
+                    loading="lazy"
                   />
                 </a>
               ) : (
@@ -135,6 +136,7 @@ export function Projects() {
                   className="w-full h-full object-contain drop-shadow-2xl"
                   src={project.image.replace('./', '/')}
                   alt={project.name}
+                  loading="lazy"
                 />
               )}
             </div>

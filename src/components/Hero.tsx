@@ -71,11 +71,36 @@ function DockIcon({ mouseX, href, children, target = "_blank" }: { mouseX: any, 
   );
 }
 
+// Word-level reveal: animates each word as a single unit instead of per-character.
+// Reduces animated elements from ~20 down to 5, cutting GPU composite work on load.
+const wordReveal = {
+  hidden: { opacity: 0, y: 30, filter: "blur(8px)" },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { delay: i * 0.12, duration: 0.55, ease: [0.22, 1, 0.36, 1] },
+  }),
+};
+
+const fadeReveal = {
+  hidden: { opacity: 0, filter: "blur(6px)" },
+  visible: (i: number) => ({
+    opacity: 1,
+    filter: "blur(0px)",
+    transition: { delay: 0.3 + i * 0.15, duration: 0.6, ease: "easeOut" },
+  }),
+};
+
 export function Hero() {
   const dockMouseX = useMotionValue(Infinity);
   const [maskVisible, setMaskVisible] = useState(false);
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
+
+  // Derive cursor transform values at hook level (not inside JSX)
+  const cursorTranslateX = useTransform(cursorX, (x) => x - 80);
+  const cursorTranslateY = useTransform(cursorY, (y) => y - 80);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -85,37 +110,6 @@ export function Hero() {
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [cursorX, cursorY]);
-
-  const revealVariants = {
-    visible: (i: number) => ({
-      y: 0,
-      opacity: 1,
-      filter: "blur(0px)",
-      transition: {
-        delay: i * 1.5,
-        duration: 0.7,
-      },
-    }),
-    hidden: {
-      filter: "blur(10px)",
-      y: 40,
-      opacity: 0,
-    },
-  };
-  const textVariants = {
-    visible: (i: number) => ({
-      filter: "blur(0px)",
-      opacity: 1,
-      transition: {
-        delay: i * 0.3,
-        duration: 0.7,
-      },
-    }),
-    hidden: {
-      filter: "blur(10px)",
-      opacity: 0,
-    },
-  };
 
   return (
     <section
@@ -127,8 +121,8 @@ export function Hero() {
       <motion.div
         className="hidden md:block fixed top-0 left-0 w-40 h-40 rounded-full bg-white pointer-events-none z-[100]"
         style={{
-          x: useTransform(cursorX, x => x - 80),
-          y: useTransform(cursorY, y => y - 80),
+          x: cursorTranslateX,
+          y: cursorTranslateY,
           mixBlendMode: "difference",
         }}
         initial={{ opacity: 0, scale: 0 }}
@@ -142,46 +136,43 @@ export function Hero() {
 
         {/* Left side: Name & Title */}
         <div className="flex flex-col z-10 max-w-3xl w-full lg:w-1/2">
-          <motion.h1
-            initial="hidden"
-            animate="visible"
-            className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tighter mb-4 text-foreground font-sans flex flex-wrap"
-          >
-            {"Hi I'm".split("").map((char, index) => (
+          {/* "Hi I'm" — animate word-by-word */}
+          <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tighter mb-4 text-foreground font-sans flex flex-wrap gap-x-[0.25em]">
+            {["Hi", "I'm"].map((word, i) => (
               <motion.span
-                key={index}
-                custom={index * 0.05}
-                variants={revealVariants}
+                key={word}
+                custom={i}
+                initial="hidden"
+                animate="visible"
+                variants={wordReveal}
                 className="inline-block"
               >
-                {char === " " ? "\u00A0" : char}
+                {word}
               </motion.span>
             ))}
-          </motion.h1>
-          <motion.h1
-            initial="hidden"
-            animate="visible"
-            className="text-6xl md:text-8xl lg:text-9xl font-extrabold tracking-tighter mb-4 text-foreground font-sans flex flex-col"
-          >
-            <div className="flex flex-wrap">
-              {"Joy Sengupta".split("").map((char, index) => (
-                <motion.span
-                  key={index}
-                  custom={("Hi I'm".length + index) * 0.05}
-                  variants={revealVariants}
-                  className="inline-block"
-                >
-                  {char === " " ? "\u00A0" : char}
-                </motion.span>
-              ))}
-            </div>
-          </motion.h1>
+          </h1>
+
+          {/* "Joy Sengupta" — animate word-by-word, offset index so it staggers after "Hi I'm" */}
+          <h1 className="text-6xl md:text-8xl lg:text-9xl font-extrabold tracking-tighter mb-4 text-foreground font-sans flex flex-wrap gap-x-[0.2em]">
+            {["Joy", "Sengupta"].map((word, i) => (
+              <motion.span
+                key={word}
+                custom={i + 2}
+                initial="hidden"
+                animate="visible"
+                variants={wordReveal}
+                className="inline-block"
+              >
+                {word}
+              </motion.span>
+            ))}
+          </h1>
 
           <motion.div
-            custom={4}
+            custom={0}
             initial="hidden"
             animate="visible"
-            variants={textVariants}
+            variants={fadeReveal}
             className="text-xl md:text-2xl lg:text-4xl text-foreground/70 font-medium font-sans min-h-[4rem]"
           >
             <TypeAnimation
@@ -202,10 +193,10 @@ export function Hero() {
           </motion.div>
 
           <motion.p
-            custom={8}
+            custom={1}
             initial="hidden"
             animate="visible"
-            variants={textVariants}
+            variants={fadeReveal}
             className="text-lg md:text-xl text-foreground/60 mt-6 max-w-xl font-medium font-sans leading-relaxed"
           >
             I'm a passionate developer focused on crafting beautiful, interactive web experiences and exploring the frontiers of machine learning.

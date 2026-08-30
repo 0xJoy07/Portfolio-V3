@@ -1,6 +1,14 @@
 import type { Metadata } from "next";
+import { Changa } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+
+const changa = Changa({
+  subsets: ["latin"],
+  weight: ["200", "300", "400", "500", "600", "700", "800"],
+  variable: "--font-changa",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Joy Sengupta | Portfolio",
@@ -16,13 +24,8 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className="h-full antialiased scroll-smooth"
+      className={`h-full antialiased scroll-smooth ${changa.variable}`}
     >
-      <head>
-        <style>
-          {`@import url('https://fonts.googleapis.com/css2?family=Changa:wght@200..800&display=swap');`}
-        </style>
-      </head>
       <body className="min-h-full flex flex-col font-sans">
         <ThemeProvider
           attribute="class"
