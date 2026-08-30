@@ -9,17 +9,18 @@
             "Tech Stack": ["MERN" , "Tailwind" , "Python" , "Serper" , "OpenRouter" , "Jina"]
         },
         {
-            "name": "SummAI",
-            "description": "Youtube video summary generator using OpenRouter free models.",
-            "image": "./assets/SummAI.png",
-            "github": "https://github.com/0xJoy07/SummAI",
-            "live": "https://summ-ai-bay.vercel.app/",
-            "Tech Stack": ["MERN" , "Tailwind" , "Python" , "OpenRouter"]
+            "name": "VibeForge",
+            "description": "An Github + CodeBase Reviewer with npm support for local files scanning",
+            "image": "./assets/VibeForge.png",
+            "github": "https://github.com/0xJoy07/VibeForge",
+            "live": "https://https://vibeforgescanner.vercel.app/",
+            "Tech Stack": ["MERN" , "Tailwind" , "OpenRouter" , "RazorPay" , "SupaBase"]
         },
         {
             "name": "TalentMindAI",
             "description": "a robust Proof-of-Concept that intelligently ranks candidates — going beyond keywords to understand semantic fit, interpret complex job descriptions, and integrate behavioral/activity signals to deliver a fast, accurate ranked shortlist.",
             "image": "./assets/TalentMindAI.png",
+            "live":"https://talentmind-ai-chi.vercel.app/",
             "github": "https://github.com/0xJoy07/TalentMindAI",
             "Tech Stack": ["Next.js" , "MERN" , "Python" ]
         },
@@ -28,6 +29,14 @@
             "description": "A CLI tool for automating development tasks using NVIDIA's free endpoints",
             "image": "./assets/infinite_void.png",
             "github": "https://github.com/0xJoy07/Agentic-CLI-Tool",
+            "Tech Stack": ["Python" , "NVIDIA"]
+        },
+        {
+            "name": "Purplexity",
+            "description": "A Clone of Purplexity but with opensource free models from openrouter",
+            "image": "./assets/Purplexity.png",
+            "live":"https://purplexity-chat.vercel.app",
+            "github": "https://github.com/0xJoy07/Purplexity",
             "Tech Stack": ["Python" , "NVIDIA"]
         },
         {
