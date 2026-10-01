@@ -101,7 +101,6 @@ function DockSkillNode({ skill, category, mx, my, x, y, delay }: any) {
             transition: { duration: 0.05, ease: "easeOut" }
           }}
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           {skill.darkSlug && skill.lightSlug ? (
             <>
               <img 

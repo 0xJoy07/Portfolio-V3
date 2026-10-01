@@ -179,7 +179,6 @@ export function ScatterDots() {
     };
   // Intentionally no resolvedTheme in deps — theme changes are handled
   // via themeRef so the canvas doesn't tear down and reinitialize.
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

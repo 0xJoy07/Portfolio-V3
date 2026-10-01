@@ -13,7 +13,7 @@
             "description": "An Github + CodeBase Reviewer with npm support for local files scanning",
             "image": "./assets/VibeForge.png",
             "github": "https://github.com/0xJoy07/VibeForge",
-            "live": "https://https://vibeforgescanner.vercel.app/",
+            "live": "https://vibeforgescanner.vercel.app/",
             "Tech Stack": ["MERN" , "Tailwind" , "OpenRouter" , "RazorPay" , "SupaBase"]
         },
         {

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
+import { motion, useMotionValue, useSpring, useTransform, type Variants } from "motion/react";
 import { TypeAnimation } from "react-type-animation";
 import { useRef, useEffect, useState } from "react";
 import { MeshGradientSVG } from "./ui/shader-svg";
@@ -73,17 +73,17 @@ function DockIcon({ mouseX, href, children, target = "_blank" }: { mouseX: any, 
 
 // Word-level reveal: animates each word as a single unit instead of per-character.
 // Reduces animated elements from ~20 down to 5, cutting GPU composite work on load.
-const wordReveal = {
+const wordReveal: Variants = {
   hidden: { opacity: 0, y: 30, filter: "blur(8px)" },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
     filter: "blur(0px)",
-    transition: { delay: i * 0.12, duration: 0.55, ease: [0.22, 1, 0.36, 1] },
+    transition: { delay: i * 0.12, duration: 0.55, ease: [0.22, 1, 0.36, 1] as const },
   }),
 };
 
-const fadeReveal = {
+const fadeReveal: Variants = {
   hidden: { opacity: 0, filter: "blur(6px)" },
   visible: (i: number) => ({
     opacity: 1,
