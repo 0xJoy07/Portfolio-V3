@@ -174,7 +174,6 @@ export function TechRow() {
 
   return (
     <div className="w-full relative py-8 opacity-80 hover:opacity-100 transition-opacity">
-      <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background z-20 pointer-events-none" />
       <Marquee speed={40} pauseOnHover={true} className="!mt-0">
         {arr.map((Logo, index) => (
           <div

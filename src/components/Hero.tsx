@@ -3,9 +3,9 @@
 import Link from "next/link";
 import { motion, useMotionValue, useSpring, useTransform, type Variants } from "motion/react";
 import { TypeAnimation } from "react-type-animation";
-import { useRef, useEffect, useState } from "react";
+import { useRef } from "react";
 import { MeshGradientSVG } from "./ui/shader-svg";
-import { ScatterDots } from "./ui/scatter-dots";
+import CodeBackground from "./ui/code-background";
 import { TechRow } from "./TechRow";
 
 const GithubIcon = ({ className }: { className?: string }) => (
@@ -94,42 +94,13 @@ const fadeReveal: Variants = {
 
 export function Hero() {
   const dockMouseX = useMotionValue(Infinity);
-  const [maskVisible, setMaskVisible] = useState(false);
-  const cursorX = useMotionValue(-100);
-  const cursorY = useMotionValue(-100);
-
-  // Derive cursor transform values at hook level (not inside JSX)
-  const cursorTranslateX = useTransform(cursorX, (x) => x - 80);
-  const cursorTranslateY = useTransform(cursorY, (y) => y - 80);
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      cursorX.set(e.clientX);
-      cursorY.set(e.clientY);
-    };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [cursorX, cursorY]);
 
   return (
     <section
       id="home"
       className="relative min-h-screen flex flex-col overflow-hidden pt-24 bg-background"
-      onMouseEnter={() => setMaskVisible(true)}
-      onMouseLeave={() => setMaskVisible(false)}
     >
-      <motion.div
-        className="hidden md:block fixed top-0 left-0 w-40 h-40 rounded-full bg-white pointer-events-none z-[100]"
-        style={{
-          x: cursorTranslateX,
-          y: cursorTranslateY,
-          mixBlendMode: "difference",
-        }}
-        initial={{ opacity: 0, scale: 0 }}
-        animate={{ opacity: maskVisible ? 1 : 0, scale: maskVisible ? 1 : 0.5 }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
-      />
-      <ScatterDots />
+      <CodeBackground className="absolute inset-0 z-0 pointer-events-none" />
 
       {/* Main hero content */}
       <div className="flex-1 flex flex-col lg:flex-row items-center justify-between px-4 sm:px-8 md:px-16 gap-12 lg:gap-0 pb-12 lg:pb-0 pt-8 lg:pt-0">
