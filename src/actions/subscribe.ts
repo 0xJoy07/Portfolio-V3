@@ -14,7 +14,7 @@ export async function subscribeAction(email: string) {
     const { data, error } = await resend.emails.send({
       from: "Portfolio <onboarding@resend.dev>",
       to: "joysengupta521@gmail.com", 
-      subject: "🚀 NEW_SIGNAL_DETECTED: Footer Subscription",
+      subject: "NEW_SIGNAL_DETECTED: Footer Form",
       html: `
         <div style="font-family: 'Courier New', monospace; background-color: #09090b; color: #fafafa; padding: 32px; border-radius: 8px; border: 1px solid #27272a;">
           <h2 style="color: #f9531f; margin-top: 0; font-size: 22px; font-weight: bold;">> NEW_CONNECTION_ESTABLISHED</h2>
