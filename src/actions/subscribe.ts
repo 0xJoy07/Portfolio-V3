@@ -14,8 +14,24 @@ export async function subscribeAction(email: string) {
     const { data, error } = await resend.emails.send({
       from: "Portfolio <onboarding@resend.dev>",
       to: "joysengupta521@gmail.com", 
-      subject: "New Footer Subscription",
-      text: `Someone just subscribed to your portfolio newsletter with the email: ${email}`,
+      subject: "🚀 NEW_SIGNAL_DETECTED: Footer Subscription",
+      html: `
+        <div style="font-family: 'Courier New', monospace; background-color: #09090b; color: #fafafa; padding: 32px; border-radius: 8px; border: 1px solid #27272a;">
+          <h2 style="color: #f9531f; margin-top: 0; font-size: 22px; font-weight: bold;">> NEW_CONNECTION_ESTABLISHED</h2>
+          <p style="font-size: 16px; line-height: 1.6; color: #a1a1aa;">
+            System log: A new subscriber has interfaced with the portfolio footer terminal.
+          </p>
+          <div style="background-color: #000000; padding: 20px; border-radius: 6px; border-left: 4px solid #f9531f; margin: 24px 0;">
+            <code style="color: #10b981; font-size: 16px;">
+              <span style="color: #71717a;">$</span> extract_payload --target email<br/><br/>
+              <span style="color: #fafafa;">> "${email}"</span>
+            </code>
+          </div>
+          <p style="color: #71717a; font-size: 12px; margin-bottom: 0;">
+            // End of transmission.
+          </p>
+        </div>
+      `,
     });
 
     if (error) {
