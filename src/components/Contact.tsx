@@ -171,7 +171,7 @@ export function Contact() {
           </p>
           <a 
             href="/Joy_Sengupta_Resume.pdf" 
-            download="Joy_Sengupta_Resume.pdf"
+            download="Joy_Resume.pdf"
             className="btn-sweep-fill group inline-flex items-center justify-center gap-2 h-12 px-8 text-sm font-sans tracking-widest rounded-full bg-transparent border border-foreground text-foreground hover:text-background transition-colors duration-300"
           >
             <span className="relative z-10 flex items-center gap-2">

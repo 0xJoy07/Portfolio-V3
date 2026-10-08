@@ -174,8 +174,8 @@ export function NavBar({ items, className }: NavBarProps) {
             transition={{ duration: 0.4, ease: EASE }}
           >
             <a
-              href="/resume.pdf"
-              download="Resume.pdf"
+              href="/Joy_Resume.pdf"
+              download="Joy_Resume.pdf"
               className="btn-sweep-fill inline-flex items-center h-[38px] text-sm font-sans tracking-widest px-5 border border-foreground bg-transparent text-foreground rounded-full hover:text-background transition-colors duration-300"
             >
               <span className="relative z-10 flex items-center gap-1.5">
