@@ -12,7 +12,7 @@ export async function subscribeAction(email: string) {
 
     // Sends an email to you when someone subscribes
     const { data, error } = await resend.emails.send({
-      from: "Portfolio <onboarding@resend.dev>",
+      from: "Portfolio <noreply@portfolio.com>",
       to: "joysengupta521@gmail.com", 
       subject: "NEW_SIGNAL_DETECTED: Footer Form",
       html: `
