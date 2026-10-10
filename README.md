@@ -2,19 +2,19 @@
 
 A high-performance personal portfolio built with Next.js 16 (App Router & Turbopack), React 19, TypeScript, Tailwind CSS v4, and Motion. Features hardware-accelerated micro-interactions, canvas-driven physics animations, dynamic shader gradients, and a curated dark/light design system.
 
-Live Deployment: [0xjoy07.vercel.app](https://0xjoy07.vercel.app/)
+Live Deployment: [0x-joy.vercel.app](https://0x-joy.vercel.app/)
 
 ---
 
 ## Overview
 
-Portfolio V3 is engineered for optimal performance, smooth interactive UX, and modern web aesthetics. It utilizes static site generation (SSG) with code-splitting across below-the-fold sections to ensure low latency and fast First Contentful Paint (FCP).
+Portfolio V3 is engineered for optimal performance, smooth interactive UX, and modern web aesthetics. It utilizes server-side rendering with code-splitting across below-the-fold sections to ensure low latency and fast First Contentful Paint (FCP).
 
 ---
 
 ## Key Features
 
-- **High-Performance Architecture:** Static export (`output: 'export'`) powered by Next.js 16 and Turbopack for instantaneous page transitions.
+- **High-Performance Architecture:** Powered by Next.js 16 and Turbopack with server-side rendering and serverless functions on Vercel.
 - **Canvas Physics & Shaders:**
   - Interactive canvas scatter-dots reacting to cursor proximity with idle state detection and debounced resize handling.
   - SVG mesh gradient shaders for modern aesthetic depth.
@@ -25,13 +25,14 @@ Portfolio V3 is engineered for optimal performance, smooth interactive UX, and m
 - **Career Timeline:** Structured chronicle of education, internships, and technical competencies.
 - **Featured Projects:** Showcase of flagship full-stack, AI, and agentic engineering projects with live links and source code.
 - **Contact Integration:** Form submissions handled via Web3Forms API.
+- **Email Notifications:** Footer subscription form powered by Resend — sends a styled notification email when a visitor subscribes.
 
 ---
 
 ## Technical Stack
 
 ### Core Framework & Language
-- **Next.js 16** (App Router, Turbopack, Static Export)
+- **Next.js 16** (App Router, Turbopack, Server Actions)
 - **React 19**
 - **TypeScript 5**
 
@@ -45,6 +46,7 @@ Portfolio V3 is engineered for optimal performance, smooth interactive UX, and m
 - **next-themes** for theme provider and persistence
 - **clsx** & **tailwind-merge** for class composition
 - **Web3Forms API** for contact form submissions
+- **Resend** for transactional email notifications
 
 ---
 
@@ -56,8 +58,11 @@ Portfolio V3 is engineered for optimal performance, smooth interactive UX, and m
 ├── projects/
 │   └── projects.json       # Featured projects metadata and links
 ├── src/
+│   ├── actions/
+│   │   └── subscribe.ts    # Server Action for Resend email notifications
 │   ├── app/
 │   │   ├── globals.css     # Design tokens, typography & CSS variables
+│   │   ├── icon.png        # Site favicon / app icon
 │   │   ├── layout.tsx      # Root layout, Changa font & ThemeProvider setup
 │   │   └── page.tsx        # Main page with code-split sections
 │   ├── components/
@@ -66,6 +71,7 @@ Portfolio V3 is engineered for optimal performance, smooth interactive UX, and m
 │   │   ├── Achievements.tsx# Badges & certifications
 │   │   ├── Contact.tsx     # Contact form & social connections
 │   │   ├── Experience.tsx  # Work experience & education history
+│   │   ├── Footer.tsx      # Site footer with subscribe form & social links
 │   │   ├── Hero.tsx        # Hero section with interactive cursor & word reveals
 │   │   ├── Navbar.tsx      # Tubelight navigation bar
 │   │   ├── Projects.tsx    # Project showcase cards
@@ -73,7 +79,7 @@ Portfolio V3 is engineered for optimal performance, smooth interactive UX, and m
 │   │   └── TechRow.tsx     # Animated tech stack marquee
 │   └── lib/
 │       └── utils.ts        # Utility helpers (cn)
-├── next.config.ts          # Next.js configuration (static export & unoptimized images)
+├── next.config.ts          # Next.js configuration
 ├── package.json            # Project dependencies and scripts
 └── tsconfig.json           # TypeScript configuration
 ```
@@ -101,11 +107,13 @@ Portfolio V3 is engineered for optimal performance, smooth interactive UX, and m
    ```
 
 3. Configure environment variables:
-   Create a `.env.local` file in the root directory:
+   Create a `.env` file in the root directory:
    ```env
    NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY=your_web3forms_access_key
+   RESEND_API_KEY=your_resend_api_key
    ```
-   *(Obtain a key at [web3forms.com](https://web3forms.com))*
+   - Obtain a Web3Forms key at [web3forms.com](https://web3forms.com)
+   - Obtain a Resend API key at [resend.com](https://resend.com)
 
 4. Start the development server:
    ```bash
@@ -117,30 +125,30 @@ Portfolio V3 is engineered for optimal performance, smooth interactive UX, and m
 
 ## Build & Deployment
 
-Generate an optimized static export:
+Generate an optimized production build:
 
 ```bash
 npm run build
 ```
 
-Production-ready files will be generated in the `out/` directory.
-
 ### Vercel Deployment
 
 1. Push commits to GitHub.
 2. Link the repository in the Vercel dashboard.
-3. Add the `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY` environment variable in the project settings.
-4. Deploy. Vercel automatically detects Next.js settings and publishes the static export.
+3. Add the following environment variables in the project settings:
+   - `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY`
+   - `RESEND_API_KEY`
+4. Deploy. Vercel automatically detects Next.js settings and handles server-side rendering and Server Actions via serverless functions.
 
 ---
 
 ## Author
 
 **Joy Sengupta**
-- Website: [0xjoy07.vercel.app](https://0xjoy07.vercel.app/)
+- Website: [0x-joy.vercel.app](https://0x-joy.vercel.app/)
 - GitHub: [@0xJoy07](https://github.com/0xJoy07)
 - LinkedIn: [linkedin.com/in/beinggojo](https://linkedin.com/in/beinggojo)
-- X (Twitter): [@being_gojo](https://x.com/being_gojo)
+- X (Twitter): [@_being_gojo_](https://x.com/_being_gojo_)
 
 ---
 
